@@ -1,0 +1,27 @@
+[
+  {
+    "groupId": 0,
+    "groupName": "Group No.0",
+    "itemNames": [ "Todo 0 Group 0", "Todo 1 Group 0", "Todo 2 Group 0" ]
+  },
+  {
+    "groupId": 1,
+    "groupName": "Group No.1",
+    "itemNames": [ "Todo 0 Group 1", "Todo 1 Group 1", "Todo 2 Group 1" ]
+  },
+  {
+    "groupId": 2,
+    "groupName": "Group No.2",
+    "itemNames": [ "Todo 0 Group 2", "Todo 1 Group 2", "Todo 2 Group 2" ]
+  },
+  {
+    "groupId": 3,
+    "groupName": "Group No.3",
+    "itemNames": [ "Todo 0 Group 3", "Todo 1 Group 3", "Todo 2 Group 3" ]
+  },
+  {
+    "groupId": 4,
+    "groupName": "Group No.4",
+    "itemNames": [ "Todo 0 Group 4", "Todo 1 Group 4", "Todo 2 Group 4" ]
+  }
+]
