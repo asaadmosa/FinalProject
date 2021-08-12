@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,12 +16,10 @@ namespace Todos.Services.Repositories
         {
             this._todoDataContext = todoDataContext;
         }
+
+        //get all lists
         public async Task<List<TodoList>> GetAllGroups(bool includeItems)
         {
-            //var r = ReadFromMemory();
-            //_todoDataContext.TodoGroups.AddRange(r);
-            //await _todoDataContext.SaveChangesAsync();
-
             if (!includeItems)
             {
                 var items = await _todoDataContext.TodoGroups.ToListAsync();
@@ -34,40 +31,38 @@ namespace Todos.Services.Repositories
                 return items;
             }
         }
-/*
-        private static List<TodoGroup> ReadFromMemory()
+
+        //get the list count
+        public Task<int> GetListCount()
         {
-            var TodoGroup = new List<TodoGroup>();
-            var globalCounter = 1;
-            for (int i = 0; i < 5; i++)
-            {
-                TodoGroup group = new()
-                {
-                    //Id = i,
-                    Name = $"Group No.{i}"
-                };
-                for (int j = 0; j < 3; j++)
-                {
-                    group.Items.Add(new TodoItem
-                    {
-                        //Id = globalCounter,
-                        Name = $"Todo {j} Group {i}",
-                        Description = "Desc",
-                        GroupId = i,
-                        IsCompleted = false
-                    });
-                    globalCounter++;
-                }
-                TodoGroup.Add(group);
-            }
-            return TodoGroup;
+                var count = _todoDataContext.TodoGroups.ToListAsync().Result.Count;
+                return Task.FromResult(count);           
         }
-*/
+
+        //get all items by listI d
         public async Task<List<TodoItem>> GetTodoItems(Guid todoGroupId)
         {
             var group = GetTodoGroup(todoGroupId);
             List<TodoItem> items = (await group).Items;
             return items;
+        }
+
+        //get items count
+        public Task<int> GetItemsCount()
+        {
+            var lists = GetAllGroups(true);
+            int count = 0;
+            lists.Result.ForEach(list => count+=list.Items.Count);
+            return Task.FromResult(count);
+        }
+
+        //get active items count
+        public Task<int> GetActiveItemsCount()
+        {
+            var lists = GetAllGroups(true);
+            int count = 0;
+            lists.Result.ForEach(list => count += list.Items.FindAll(item =>item.IsCompleted==false).Count);
+            return Task.FromResult(count);
         }
 
         public Task DeleteGroup(Guid todoGroupId)

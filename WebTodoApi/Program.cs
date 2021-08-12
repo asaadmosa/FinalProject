@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 
-namespace WebTodoApi
+namespace Todos.WebTodoApi
 {
     public class Program
     {

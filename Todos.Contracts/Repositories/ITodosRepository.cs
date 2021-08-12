@@ -9,6 +9,9 @@ namespace Todos.Contracts.Repositories
     public interface ITodosRepository
     {
         Task <List<TodoList>> GetAllGroups(bool includeItems);
+        Task<int> GetListCount();
+        Task<int> GetItemsCount();
+        Task<int> GetActiveItemsCount();
         Task<TodoList> GetTodoGroup(Guid todoGroupId);
         Task DeleteGroup(Guid todoGroupId);
         Task<TodoList> ModifyTodoGroup(TodoList todoGroup);

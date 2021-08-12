@@ -9,7 +9,7 @@ using Todos.Services.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
-namespace WebTodoApi
+namespace Todos.WebTodoApi
 {
     public class Startup
     {

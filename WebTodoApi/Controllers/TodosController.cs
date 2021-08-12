@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 using Todos.Contracts.Repositories;
 using Todos.DataModel;
 
-namespace WebTodoApi.Controllers
+namespace Todos.WebTodoApi.Controllers
 {
     
     [Route("todos")]//the route is todos
@@ -23,7 +22,55 @@ namespace WebTodoApi.Controllers
         {
             _todosRepository = todosRepository;
         }
-        
+
+
+        //get the number of the lists
+        [HttpGet("TodoGroup/listsNumber")]
+        public async Task<ActionResult<int>> GetListsNumber()
+        {
+            try
+            {
+                var result = await _todosRepository.GetListCount();
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        //get the total number of items
+        [HttpGet("TodoGroup/ItemsNumber")]
+        public async Task<ActionResult<int>> GetItemsCount()
+        {
+            try
+            {
+                var result = await _todosRepository.GetItemsCount();
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+
+        //get the total number of Active items
+        [HttpGet("TodoGroup/ActiveItemsNumber")]
+        public async Task<ActionResult<int>> GetActiveItemssNumber()
+        {
+            try
+            {
+                var result =await _todosRepository.GetActiveItemsCount();
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        //Showing the collection of lists that you have
         [HttpGet()]
         public async Task<ActionResult<List<TodoList>>> GetGroups()
         {
@@ -38,7 +85,7 @@ namespace WebTodoApi.Controllers
             }
         }
 
-        
+        //Showing the list description, icon and items in this list
         [HttpGet("TodoGroup/{groupId}")]
         public async Task<ActionResult<TodoList>> GetGroupById(Guid groupId)
         {
@@ -53,7 +100,7 @@ namespace WebTodoApi.Controllers
             }
         }
 
-        
+        //show all items of list
         [HttpGet("TodoGroup/{groupId}/Items")]
         public async Task<ActionResult<List<TodoItem>>> GetItemsOfGroup(Guid groupId)
         {
@@ -68,7 +115,7 @@ namespace WebTodoApi.Controllers
             }
         }
 
-        
+        //show an item of list
         [HttpGet("TodoGroup/{groupId}/Items/{itemId}")]
         public async Task<ActionResult<TodoItem>> GetItemsOfGroup(Guid groupId,Guid itemId)
         {
@@ -83,20 +130,7 @@ namespace WebTodoApi.Controllers
             }
         }
         
-        [HttpGet("TodoGroup/{groupId}/Items/{itemId}")]
-        public async Task<ActionResult> DeleteItemsOfGroup(Guid groupId, Guid itemId)
-        {
-            try
-            {
-                await _todosRepository.DeleteItem(groupId, itemId);
-                return Ok();
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
-
+        //delete list
         [HttpDelete("TodoGroup/{groupId}")]
         public async Task<ActionResult> DeleteGroup(Guid groupId)
         {
@@ -111,6 +145,7 @@ namespace WebTodoApi.Controllers
             }
         }
 
+        //modify list
         [HttpPut]
         public async Task<ActionResult> ModifyTodoGroup([FromBody] TodoList todoGroup)
         {        
@@ -125,7 +160,7 @@ namespace WebTodoApi.Controllers
             }
         }
 
-
+        //create new list
         [HttpPost]
         public async Task<ActionResult> AddTodoGroup([FromBody] TodoList todoGroup)
         {

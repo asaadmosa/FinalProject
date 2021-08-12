@@ -38,12 +38,27 @@ namespace Todos.Services.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<int> GetActiveItemsCount()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<TodoList>> GetAllGroups(bool includeItems)
         {
             await Task.Delay(1000);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", jsonUrl);
             var jsonContent = File.ReadAllText(filePath);
             return JsonConvert.DeserializeObject<List<TodoList>>(jsonContent);
+        }
+
+        public Task<int> GetItemsCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetListCount()
+        {
+            throw new NotImplementedException();
         }
 
         public Task<TodoList> GetTodoGroup(Guid todoGroupId)
