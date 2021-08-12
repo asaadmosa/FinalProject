@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Todos.Contracts.Repositories;
 using Todos.DataModel;
 
-namespace Todos.WebTodoApi.Controllers
+namespace WebTodoApi.Controllers
 {
     
     [Route("todos")]//the route is todos
@@ -30,8 +30,6 @@ namespace Todos.WebTodoApi.Controllers
             try
             {
                 var result = await _todosRepository.GetAllGroups(true);
-                //var response = result.Select(x => TodoGroupMapper.Map(x)).ToList();
-                //return Ok(response);
                 return Ok(result);
             }
             catch

@@ -9,7 +9,7 @@ using Todos.Services.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
-namespace Todos.WebTodoApi
+namespace WebTodoApi
 {
     public class Startup
     {
@@ -18,9 +18,11 @@ namespace Todos.WebTodoApi
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration{get;}
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodosDataContext>(options=>options.UseSqlServer("name=ConnectionStrings:todo"));
