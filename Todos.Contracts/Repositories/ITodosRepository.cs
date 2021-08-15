@@ -19,8 +19,9 @@ namespace Todos.Contracts.Repositories
         Task<List<TodoItem>> GetTodoItems(Guid todoGroupId);
         Task<TodoItem> GetTodoItem(Guid todoGroupId,Guid todoItemId);
         Task DeleteItem(Guid todoGroupId, Guid todoItemId);
+        Task<TodoItem> AddTodoItem(TodoItem todoItem);
 
-        
+
 
 
         /*

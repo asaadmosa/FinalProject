@@ -110,5 +110,13 @@ namespace Todos.Services.Repositories
             _todoDataContext.SaveChangesAsync();
             return Task.FromResult(todoGroup);
         }
+
+
+        public Task<TodoItem> AddTodoItem(TodoItem todoItem)
+        {
+            _todoDataContext.AddAsync(todoItem);
+            _todoDataContext.SaveChangesAsync();
+            return Task.FromResult(todoItem);
+        }
     }
 }

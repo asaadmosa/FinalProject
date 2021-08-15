@@ -23,6 +23,11 @@ namespace Todos.Services.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<TodoItem> AddTodoItem(TodoItem todoItem)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task DeleteGroup(int todoGroupId)
         {
             throw new System.NotImplementedException();

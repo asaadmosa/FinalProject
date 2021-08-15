@@ -14,7 +14,7 @@ namespace Todos.WebTodoApi.Controllers
     
     [Route("todos")]//the route is todos
     [ApiController]
-    [EnableCors("Policy1")]
+    [EnableCors()]
     public class TodosController : ControllerBase
     {
         private readonly ITodosRepository _todosRepository;
@@ -160,9 +160,25 @@ namespace Todos.WebTodoApi.Controllers
             }
         }
 
+        //create new item
+        [HttpPost("TodoGroup/{groupId}/Items")]
+        public async Task<ActionResult> AddTodoGroup([FromBody] TodoItem todoItem)
+        {
+            try
+            {
+                var res = await _todosRepository.AddTodoItem(todoItem);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+
         //create new list
         [HttpPost]
-        public async Task<ActionResult> AddTodoGroup([FromBody] TodoList todoGroup)
+        public async Task<ActionResult> AddTodoItem([FromBody] TodoList todoGroup)
         {
             try
             {
@@ -174,7 +190,6 @@ namespace Todos.WebTodoApi.Controllers
                 return BadRequest();
             }
         }
-
 
     }
 }

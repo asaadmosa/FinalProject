@@ -32,14 +32,20 @@ namespace Todos.WebTodoApi
             services.AddScoped<ITodosRepository, SqlTodosRepository>();
             services.AddCors(options =>
             {
-                options.AddPolicy("Policy1",
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200");
-                        builder.WithHeaders("content-type");
-                        builder.WithMethods("PUT", "DELETE", "GET", "POST","OPTIONS");
-                        builder.AllowCredentials();
-                    });
+                /*                options.AddPolicy("Policy1",
+                                    builder =>
+                                    {
+                                           builder.WithOrigins("http://localhost:4200");
+                                           builder.WithHeaders("content-type");
+                                           builder.WithMethods("PUT", "DELETE", "GET", "POST","OPTIONS");
+                                           builder.AllowCredentials();
+                                    });
+                */
+                options.AddDefaultPolicy(builder =>
+                    builder.SetIsOriginAllowed(_ => true)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
 
         }
@@ -53,8 +59,8 @@ namespace Todos.WebTodoApi
             }
 
             app.UseRouting();
-            app.UseCors("Policy1");
-
+            //app.UseCors("Policy1");
+            app.UseCors();
 
 
             app.UseAuthorization();
