@@ -10,7 +10,7 @@ using Todos.DataAccess;
 namespace Todos.DataAccess.Migrations
 {
     [DbContext(typeof(TodosDataContext))]
-    [Migration("20210628012841_init")]
+    [Migration("20210815132632_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

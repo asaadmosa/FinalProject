@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Todos.DataModel\Todos.DataModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="migrations\" />
+  </ItemGroup>
+
 </Project>

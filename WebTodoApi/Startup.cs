@@ -42,10 +42,9 @@ namespace Todos.WebTodoApi
                                     });
                 */
                 options.AddDefaultPolicy(builder =>
-                    builder.SetIsOriginAllowed(_ => true)
+                    builder.AllowAnyOrigin()//.SetIsOriginAllowed(_ => true)
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
+                        .AllowAnyHeader());
             });
 
         }

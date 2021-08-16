@@ -161,13 +161,13 @@ namespace Todos.WebTodoApi.Controllers
         }
 
         //create new item
-        [HttpPost("TodoGroup/{groupId}/Items")]
-        public async Task<ActionResult> AddTodoGroup([FromBody] TodoItem todoItem)
+        [HttpPost("item")]
+        public async Task<ActionResult<TodoItem>> AddTodoGroup([FromBody] TodoItem todoItem)
         {
             try
             {
                 var res = await _todosRepository.AddTodoItem(todoItem);
-                return Ok();
+                return Ok(res);
             }
             catch
             {
@@ -178,12 +178,12 @@ namespace Todos.WebTodoApi.Controllers
 
         //create new list
         [HttpPost]
-        public async Task<ActionResult> AddTodoItem([FromBody] TodoList todoGroup)
+        public async Task<ActionResult<TodoList>> AddTodoItem([FromBody] TodoList todoGroup)
         {
             try
             {
                 var res = await _todosRepository.AddTodoGroup(todoGroup);
-                return Ok();
+                return Ok(res);
             }
             catch
             {

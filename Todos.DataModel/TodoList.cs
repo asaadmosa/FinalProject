@@ -15,7 +15,7 @@ namespace Todos.DataModel
         public string ImageUrl { get; set; }
         public string Color { get; set; } 
         public List<TodoItem> Items { get; set; }
-        [JsonConstructor]
+/*        [JsonConstructor]
         public TodoList(Guid id, string capation, string description, string imageUrl, string color, List<TodoItem> items)
         {
             Id = id;
@@ -30,5 +30,6 @@ namespace Todos.DataModel
         {
             this.Items = new List<TodoItem>();
         }
+*/
     }
 }

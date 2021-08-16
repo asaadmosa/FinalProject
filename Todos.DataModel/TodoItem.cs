@@ -11,6 +11,5 @@ namespace Todos.DataModel
 
         public TodoList CurrentList { get; set; }
         public Guid CurrentListId { get; set; }
-        public TodoItem() { }
     }
 }

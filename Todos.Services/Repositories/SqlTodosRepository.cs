@@ -39,7 +39,7 @@ namespace Todos.Services.Repositories
                 return Task.FromResult(count);           
         }
 
-        //get all items by listI d
+        //get all items by list Id
         public async Task<List<TodoItem>> GetTodoItems(Guid todoGroupId)
         {
             var group = GetTodoGroup(todoGroupId);
@@ -97,26 +97,26 @@ namespace Todos.Services.Repositories
             return todoItem;
         }
 
-        public Task<TodoList> AddTodoGroup(TodoList todoGroup)
+        public async Task<TodoList> AddTodoGroup(TodoList todoGroup)
         {
-            _todoDataContext.AddAsync(todoGroup);
-            _todoDataContext.SaveChangesAsync();
-            return Task.FromResult(todoGroup);
+            _todoDataContext.TodoGroups.Add(todoGroup);
+            await _todoDataContext.SaveChangesAsync();
+            return todoGroup;
         }
 
-        public Task<TodoList> ModifyTodoGroup(TodoList todoGroup)
+        public async Task<TodoList> ModifyTodoGroup(TodoList todoGroup)
         {
-            _todoDataContext.Update(todoGroup);
-            _todoDataContext.SaveChangesAsync();
-            return Task.FromResult(todoGroup);
+            _todoDataContext.TodoGroups.Update(todoGroup);
+            await _todoDataContext.SaveChangesAsync();
+            return todoGroup;
         }
 
 
-        public Task<TodoItem> AddTodoItem(TodoItem todoItem)
+        public async Task<TodoItem> AddTodoItem(TodoItem todoItem)
         {
-            _todoDataContext.AddAsync(todoItem);
-            _todoDataContext.SaveChangesAsync();
-            return Task.FromResult(todoItem);
+            _todoDataContext.TodoItems.Add(todoItem);
+            await _todoDataContext.SaveChangesAsync();
+            return todoItem;
         }
     }
 }
